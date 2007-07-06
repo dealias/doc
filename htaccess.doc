@@ -1,0 +1,31 @@
+Here is how a user (say USER) can protect a given WWW directory 
+(let's call it www.math.ualberta.ca/~USER/DIR), so that only
+people who know both the username (say student) and password can read
+the contents of www.math.ualberta.ca/~USER/DIR:
+
+1. Put the following lines in the file ~/public_html/DIR/.htaccess
+where USER represents your userid
+
+AuthUserFile /home/USER/.htpasswd
+AuthName "authentication"
+AuthType Basic
+<Limit GET>
+order deny,allow
+require valid-user
+</Limit>
+
+2. If you have not previously created a ~/.htpasswd file, set up a password for
+username student with the following command:
+
+htpasswd -c -m ~/.htpasswd student
+
+If you already have a .htpasswd file and you want to add to it, type:
+
+htpasswd -m ~/.htpasswd student
+
+3. If you want to prompt the user with the username so that he only needs
+to remember the password, simply change the word "authentication" in the file
+~/public_html/DIR/.htaccess to the actual username (in this case, student).
+The username will then be displayed like this (one still needs to type it in),
+
+Enter username for student at www.math.ualberta.ca:

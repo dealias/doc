@@ -1,0 +1,39 @@
+Here are instructions for how to use keychain to initiate passwordless
+openssh connections. Be sure that ssh agent forwarding is enabled for all
+outgoing connections (check the setting in ssh_config or specify ssh -A).
+
+These instructions are for SSH Protocol 2 (which is more secure than the
+older Protocol 1).
+
+1. Run the command on your local computer:
+
+ssh-keygen -t rsa
+
+Do not use blank pass phrases.
+
+2. Type the commands:
+
+cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
+chmod 0600 ~/.ssh/authorized_keys
+
+3. Download and install keychain from 
+
+http://www.gentoo.org/proj/en/keychain.xml
+
+4. Put in ~/.bashrc and relogin again
+
+keychain -q ~/.ssh/id_rsa
+. ~/.keychain/`uname -n`-sh
+
+Or put in ~/.cshrc and relogin again
+
+if($tty != "") then
+keychain -q ~/.ssh/id_rsa
+source ~/.keychain/`uname -n`-csh
+endif
+
+5. For each remote host REMOTE
+
+ssh REMOTE mkdir -p -m 0755 \~/.ssh
+scp ~/.ssh/authorized_keys REMOTE:.ssh/
+

@@ -1,0 +1,79 @@
+1. To use subversion with emacs, first put
+
+setenv EDITOR emacs
+
+in your ~/.cshrc (if you are using tcsh) and
+source ~/.cshrc
+
+2. Then use a command like
+
+svn co https://asymptote.svn.sourceforge.net/svnroot/asymptote/trunk/asymptote
+
+svn co svn+ssh://vortex.math.ualberta.ca/svn/calculus/m117/branches/science100
+
+to make a new working directory (e.g. asymptote or science100) in the current
+directory.
+
+The most useful commands are
+
+svn update	 (updates your directory with the most recent version)
+svn commit	 (executes above add command and commits local changes)
+svn add file     (queue new file to add to repository)
+svn diff         (identifies changes in your local directory)
+svn diff -r HEAD (identifies differences between your directory and repository)
+svn revert file	 (revert to repository version of file)
+
+3. To recover an old svn snapshot of the asymptote directory do
+
+mkdir old
+cd old
+svn co https://asymptote.svn.sourceforge.net/svnroot/asymptote/trunk/asymptote
+cd asymptote
+svn update -r "{2006-05-21 23:55}"
+OR
+svn update -r "{2006-05-21}"
+OR
+svn update -r 1234
+
+For further examples of revision specifications, see:
+
+http://svnbook.red-bean.com/nightly/en/svn.tour.revs.html#svn.tour.revs.keywords
+
+4. These commands are useful for examining revision history:
+
+svn log
+svn annotate file.cc
+svn diff -r 1000:1001
+svn diff -r "{2006-05-16 19:11}":"{2005-05-21 19:13}" 
+
+Say man svn for more info.
+
+5. Merge:
+
+wget http://svn.collab.net/repos/svn/trunk/contrib/client-side/svnmerge/svnmerge.py -O /usr/local/bin/svnmerge
+chmod a+x /usr/local/bin/svnmerge
+
+Initialize branch directory:
+
+svnmerge init
+svn ci -F svnmerge-commit-message.txt
+
+Basic commands:
+
+svnmerge avail               # show only the revision numbers
+svnmerge avail --log         # show logs of the revisions
+svnmerge avail --diff        # show diffs of the revisions
+
+svn commit
+svnmerge merge
+svn update
+svn commit -F svnmerge-commit-message.txt 
+
+For more info see http://www.orcaware.com/svn/wiki/Svnmerge.py
+
+6. Symbolic links can point to a local mirror of an external directory:
+
+svn propset svn:externals "tex svn+ssh://vortex.math.ualberta.ca/svn/tex" .
+or
+svn propedit svn:externals .
+svn propget svn:externals .
