@@ -9,9 +9,9 @@ source ~/.cshrc
 
 svn co https://asymptote.svn.sourceforge.net/svnroot/asymptote/trunk/asymptote
 
-svn co svn+ssh://vortex.math.ualberta.ca/svn/calculus/m117/branches/science100
+svn co svn+ssh://vortex.math.ualberta.ca/svn/doc/trunk doc
 
-to make a new working directory (e.g. asymptote or science100) in the current
+to make a new working directory (e.g. asymptote or doc) in the current
 directory.
 
 The most useful commands are
