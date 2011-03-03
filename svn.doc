@@ -5,10 +5,10 @@ setenv EDITOR emacs
 in your ~/.cshrc (if you are using tcsh) and
 source ~/.cshrc
 
-2. Then use a command like
+2. Then use a command like one of the following:
 
 svn co https://asymptote.svn.sourceforge.net/svnroot/asymptote/trunk/asymptote
-
+svn co https://fftwpp.svn.sourceforge.net/svnroot/fftwpp/trunk/fftw++
 svn co svn+ssh://vortex.math.ualberta.ca/svn/doc/trunk doc
 
 to make a new working directory (e.g. asymptote or doc) in the current
@@ -48,28 +48,24 @@ svn diff -r "{2006-05-16 19:11}":"{2005-05-21 19:13}"
 
 Say man svn for more info.
 
-5. Merge:
+In emacs:
+M-x vc-annotate
 
-wget http://svn.collab.net/repos/svn/trunk/contrib/client-side/svnmerge/svnmerge.py -O /usr/local/bin/svnmerge
-chmod a+x /usr/local/bin/svnmerge
+5. Branch:
 
-Initialize branch directory:
+svn copy svn+ssh://vortex.math.ualberta.ca/svn/dns/trunk svn+ssh://vortex.math.ualberta.ca/svn/dns/simple
 
-svnmerge init
-svn ci -F svnmerge-commit-message.txt
+Merge:
 
-Basic commands:
+svn copy svn+ssh://vortex.math.ualberta.ca/svn/dns/trunk t4
 
-svnmerge avail               # show only the revision numbers
-svnmerge avail --log         # show logs of the revisions
-svnmerge avail --diff        # show diffs of the revisions
+Merge a branch back into the trunk (assuming that you have a working copy of the trunk, and that the branch was created in revision 250):
 
-svn commit
-svnmerge merge
-svn update
-svn commit -F svnmerge-commit-message.txt 
+svn merge -r874:HEAD svn+ssh://vortex.math.ualberta.ca/svn/dns/trunk
 
-For more info see http://www.orcaware.com/svn/wiki/Svnmerge.py
+If you branched at revision 23, and you want to merge changes on trunk into your branch, you could do this from inside the working copy of your branch:
+
+svn merge -r 23:HEAD svn+ssh://vortex.math.ualberta.ca/svn/dns/trunk
 
 6. Symbolic links can point to a local mirror of an external directory:
 
@@ -77,3 +73,7 @@ svn propset svn:externals "tex svn+ssh://vortex.math.ualberta.ca/svn/tex" .
 or
 svn propedit svn:externals .
 svn propget svn:externals .
+
+7. To copy in a file or directory and its history from another working
+directory DIR:
+svn copy -r665 DIR .

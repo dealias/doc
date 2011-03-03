@@ -16,24 +16,23 @@ Do not use blank pass phrases.
 cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
 chmod 0600 ~/.ssh/authorized_keys
 
-3. Download and install keychain from 
+3. Download and install keychain using your package manager or from
 
 http://www.gentoo.org/proj/en/keychain.xml
 
-4. Put in ~/.bashrc and relogin again
+4. Put the following lines in ~/.bashrc and login again:
 
-keychain -q ~/.ssh/id_rsa
+keychain -q ~/.ssh/id_rsa --nogui
 . ~/.keychain/`uname -n`-sh
 
-Or put in ~/.cshrc and relogin again
+Or put the following lines in ~/.cshrc and login again:
 
 if($tty != "") then
-keychain -q ~/.ssh/id_rsa
+keychain -q ~/.ssh/id_rsa --nogui
 source ~/.keychain/`uname -n`-csh
 endif
 
 5. For each remote host REMOTE
 
-ssh REMOTE mkdir -p -m 0755 \~/.ssh
-scp ~/.ssh/authorized_keys REMOTE:.ssh/
-
+scp ~/.ssh/authorized_keys REMOTE:
+ssh REMOTE "mkdir -p -m 0755 \~/.ssh; cat authorized_keys >> ~/.ssh/authorized_keys; rm authorized_keys"
