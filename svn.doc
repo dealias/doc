@@ -61,7 +61,7 @@ svn copy svn+ssh://vortex.math.ualberta.ca/svn/dns/trunk t4
 
 Merge a branch back into the trunk (assuming that you have a working copy of the trunk, and that the branch was created in revision 250):
 
-svn merge -r874:HEAD svn+ssh://vortex.math.ualberta.ca/svn/dns/trunk
+svn merge -r250:HEAD svn+ssh://vortex.math.ualberta.ca/svn/dns/trunk
 
 If you branched at revision 23, and you want to merge changes on trunk into your branch, you could do this from inside the working copy of your branch:
 
