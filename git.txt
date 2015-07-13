@@ -1,0 +1,24 @@
+1. To use subversion with emacs, first put
+
+export EDITOR=emacs
+
+in your ~/.bash_profile file.
+
+2. Then use a command like one of the following:
+
+git clone ssh://cascade.math.ualberta.ca/git/tri
+
+to make a new working directory for the project tri in the current directory.
+
+The most useful git commands are
+
+git fetch        (updates your local repo from remote repo)
+git merge	 (merges updates in your local repo into your working directory)
+git pull         (equivalent to git fetch followed by git merge)
+git add file     (queue new file to add to local repo)
+git commit -a    (commits changes to local repo)
+git push         (updates remote repo with changes in local repo)
+git diff         (identifies changes in your local directory)
+git status       (describes current state)
+
+
