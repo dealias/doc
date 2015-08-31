@@ -7,8 +7,10 @@ in your ~/.bash_profile file.
 2. Then use a command like one of the following:
 
 git clone ssh://cascade.math.ualberta.ca/git/tri
+git clone git@github.com:vectorgraphics/asymptote
+git clone https://github.com/dealias/fftwpp fftw++
 
-to make a new working directory for the project tri in the current directory.
+to make a new working directory for the project in the current directory.
 
 The most useful git commands are
 
@@ -22,3 +24,4 @@ git diff         (identifies changes in your local directory)
 git status       (describes current state)
 
 
+git remote -v    (show remote url)
