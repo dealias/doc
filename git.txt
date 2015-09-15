@@ -1,4 +1,4 @@
-1. To use subversion with emacs, first put
+1. To use git with emacs, first put
 
 export EDITOR=emacs
 
@@ -7,21 +7,27 @@ in your ~/.bash_profile file.
 2. Then use a command like one of the following:
 
 git clone ssh://cascade.math.ualberta.ca/git/tri
-git clone git@github.com:vectorgraphics/asymptote
-git clone https://github.com/dealias/fftwpp fftw++
+git clone http://github.com/vectorgraphics/asymptote
+git clone http://github.com/dealias/fftwpp fftw++
 
 to make a new working directory for the project in the current directory.
 
 The most useful git commands are
 
-git fetch        (updates your local repo from remote repo)
-git merge	 (merges updates in your local repo into your working directory)
-git pull         (equivalent to git fetch followed by git merge)
-git add file     (queue new file to add to local repo)
-git commit -a    (commits changes to local repo)
-git push         (updates remote repo with changes in local repo)
-git diff         (identifies changes in your local directory)
-git status       (describes current state)
+git fetch         (updates your local repo from remote repo)
+git merge	  (merges updates in your local repo to your working directory)
+git pull          (equivalent to git fetch followed by git merge)
+git add FILE      (queue FILE to add to local repo)
+git commit -a     (commits changes to local repo)
+git push          (updates remote repo with changes in local repo)
+git diff          (identifies changes in your local directory)
+git status        (describes current state)
+git remote -v     (show remote url)
+git show HASH     (show commit changes for commit HASH)
 
+git branch NAME       (create branch NAME)
+git checkout NAME     (checkout branch NAME)
+git branch -d NAME    (delete local branch NAME)
+git push origin :NAME (delete remote branch NAME)
 
-git remote -v    (show remote url)
+git checkout @~1  (go one step back in history)
