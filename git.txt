@@ -25,6 +25,7 @@ git status        (describes current state)
 git remote -v     (show remote url)
 git show HASH     (show commit changes for commit HASH)
 
+git branch            (list local branches)
 git branch NAME       (create branch NAME)
 git checkout NAME     (checkout branch NAME)
 git branch -d NAME    (delete local branch NAME)
