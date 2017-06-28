@@ -9,6 +9,7 @@ in your ~/.bash_profile file.
 git clone ssh://cascade.math.ualberta.ca/git/tri
 git clone http://github.com/vectorgraphics/asymptote
 git clone http://github.com/dealias/fftwpp fftw++
+git clone http://github.com/dealias/protodns
 
 to make a new working directory for the project in the current directory.
 
@@ -22,12 +23,15 @@ git commit -a     (commits changes to local repo)
 git push          (updates remote repo with changes in local repo)
 git diff          (identifies changes in your working directory)
 git status        (describes current state)
+git log           (show change log)
 git remote -v     (show remote url)
 git show HASH     (show commit changes for commit HASH)
+git blame FILE    (show author of last commit for each line of FILE)
 
-git branch            (list local branches)
 git branch NAME       (create branch NAME)
 git checkout NAME     (checkout branch NAME)
+git checkout -b NAME  (equivalent to above two commands)
+git branch            (list local branches)
 git branch -d NAME    (delete local branch NAME)
 git push origin :NAME (delete remote branch NAME)
 
@@ -36,4 +40,5 @@ git reset HEAD~1   (remove last commit from local repo)
 git rebase -i HASH (squash commits since HASH)
 git reset --hard   (abandon all changes to local repo)
 
-git difftool HASH^ HASH (diff commit relative to its parent)
+git difftool HASH^ HASH      (diff commit relative to its parent)
+git log --oneline --decorate (show compact change log with tags)
