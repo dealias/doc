@@ -3,7 +3,46 @@ wget http://ardownload.adobe.com/pub/adobe/reader/unix/9.x/9.5.5/enu/AdbeRdr9.5.
 dnf install AdbeRdr9.5.5-1_i486linux_enu.rpm
  
 ## Install other needed packages on Fedora ##
-dnf install nspluginwrapper.i686 libcanberra-gtk2.i686 adwaita-gtk2-theme.i686 PackageKit-gtk3-module.i686
+dnf install libcanberra-gtk2.i686 adwaita-gtk2-theme.i686 PackageKit-gtk3-module.i686 mesa-dri-drivers.i686
  
+mv /usr/lib/dri/i965_dri.so /usr/lib/dri/i965_dri_broken.so
+cp /u/bowman/save/i965_dri.so  /opt/Adobe/Reader9/Reader/intellinux/lib
+BROKEN:
+mesa-dri-drivers-17.2.4-2.fc27.i686
+mesa-dri-drivers-17.3.0-0.4.rc3.fc28
+WORKS:
+Aug 22, 2017 version
 
- 
+
+
+
+
+Fedora 26 (OLD):
+
+1) Copy the 32-bit shared libraries
+ld-linux.so.2 libblkid.so.1 libc.so.6 libdl.so.2 libexpat.so.1 libmount.so.1 libpthread.so.0 libuuid.so.1 libgnutls.so.30 libcrypt.so.1
+from /lib of a Fedora 25 with a working acroread into the /opt/Adobe/Reader9/Reader/intellinux/lib directory of the Fedora 26 system.
+
+2) Edit /opt/Adobe/Reader9/bin/acroread on the Fedora 26 system, changing the line:
+
+        exec ${1+"$@"}
+
+to
+        exec /opt/Adobe/Reader9/Reader/intellinux/lib/ld-linux.so.2 ${1+"$@"}
+
+
+
+Embedded videos:https://bugzilla.redhat.com/show_bug.cgi?id=1464710
+
+Try copying /lib/libICE.so.6 and /lib/libXt.so.6 as well.
+Comment 6 Gregor Hlawacek 2017-08-07 15:47:55 EDT
+Thanks a lot that solved the problem. Embedded videos work again.
+
+
+With the help of the environment variable 
+export ACRO_PRINT_DEBUG=1
+it was easy to track down the libraries needed for CUPS support.
+It turns out that you just need to copy over these additional libraries from the F25 system:
+
+/lib/libgnutls.so.30
+/lib/libcrypt.so.1
