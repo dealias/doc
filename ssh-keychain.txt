@@ -32,7 +32,10 @@ keychain -q ~/.ssh/id_rsa --nogui
 source ~/.keychain/`uname -n`-csh
 endif
 
-5. For each remote host REMOTE
+5. Download the script ssh-auth from
 
-scp ~/.ssh/authorized_keys REMOTE:
-ssh REMOTE "mkdir -p -m 0755 \~/.ssh; cat authorized_keys >> ~/.ssh/authorized_keys; rm authorized_keys"
+http://www.math.ualberta.ca/imaging/snfs/ssh-auth
+
+6. For each remote host REMOTEHOST
+
+ssh-auth USER@REMOTEHOST
