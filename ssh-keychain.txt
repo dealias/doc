@@ -38,4 +38,4 @@ http://www.math.ualberta.ca/imaging/snfs/ssh-auth
 
 6. For each remote host REMOTEHOST
 
-ssh-auth USER@REMOTEHOST
+sh ssh-auth USER@REMOTEHOST
