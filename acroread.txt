@@ -5,14 +5,6 @@ dnf install AdbeRdr9.5.5-1_i486linux_enu.rpm
 ## Install other needed packages on Fedora ##
 dnf install libcanberra-gtk2.i686 adwaita-gtk2-theme.i686 PackageKit-gtk3-module.i686 mesa-dri-drivers.i686
  
-mv /usr/lib/dri/i965_dri.so /usr/lib/dri/i965_dri_broken.so
-cp /u/bowman/save/i965_dri.so  /opt/Adobe/Reader9/Reader/intellinux/lib
-BROKEN:
-mesa-dri-drivers-17.2.4-2.fc27.i686
-mesa-dri-drivers-17.3.0-0.4.rc3.fc28
-WORKS:
-Aug 22, 2017 version
-
 
 
 
@@ -31,6 +23,16 @@ to
         exec /opt/Adobe/Reader9/Reader/intellinux/lib/ld-linux.so.2 ${1+"$@"}
 
 
+
+mv /usr/lib/dri/i965_dri.so /usr/lib/dri/i965_dri_broken.so
+cp /u/bowman/save/i965_dri.so  /opt/Adobe/Reader9/Reader/intellinux/lib
+BROKEN:
+mesa-dri-drivers-17.2.4-2.fc27.i686
+mesa-dri-drivers-17.3.0-0.4.rc3.fc28
+WORKS:
+Aug 22, 2017 version
+Nov 5, 2018 version
+             
 
 Embedded videos:https://bugzilla.redhat.com/show_bug.cgi?id=1464710
 
