@@ -2,12 +2,9 @@ wget http://ardownload.adobe.com/pub/adobe/reader/unix/9.x/9.5.5/enu/AdbeRdr9.5.
  
 dnf install AdbeRdr9.5.5-1_i486linux_enu.rpm
  
-## Install other needed packages on Fedora ##
-dnf install libcanberra-gtk2.i686 adwaita-gtk2-theme.i686 PackageKit-gtk3-module.i686 mesa-dri-drivers.i686
- 
+# Install other needed packages on Fedora
 
-
-
+dnf install libcanberra-gtk2.i686 adwaita-gtk2-theme.i686 PackageKit-gtk3-module.i686 mesa-dri-drivers.i686 gdk-pixbuf2-xlib.i686
 
 Fedora 26 (OLD):
 
